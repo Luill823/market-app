@@ -3,11 +3,10 @@ package com.tecdesoftware.market_app.persistence.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table (name = "productos")
+@Table(name = "productos")
 public class Producto {
 
-    @Id //Llave primaria
-    //Hace el id autoincremental
+    @Id//LLave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id_producto")
@@ -28,6 +27,10 @@ public class Producto {
     private Integer cantidadStock;
 
     private Boolean estado;
+
+    @ManyToOne
+    @JoinColumn (name = "id_categoria", insertable = false, updatable = false)
+    private com.tecdesoftware.market.persistence.entity.Categoria categoria;
 
     public Integer getIdProducto() {
         return idProducto;

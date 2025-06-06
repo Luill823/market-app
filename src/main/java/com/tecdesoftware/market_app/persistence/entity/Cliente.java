@@ -1,35 +1,30 @@
 package com.tecdesoftware.market_app.persistence.entity;
 
+import com.tecdesoftware.market_app.persistence.entity.Compra;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name="clientes")
+@Table (name = "clientes" )
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    @Column(name="id")
-    private String idCliente;
 
     private String nombre;
 
+    @Column (name = "apellidos")
     private String apellido;
 
     private Long celular;
 
-    private String direcion;
+    private String direccion;
 
-    @Column(name="correo_electronico")
+    @Column (name = "correo_electronico")
     private String correoElectronico;
 
-    public String getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
-    }
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
 
     public String getNombre() {
         return nombre;
@@ -55,12 +50,12 @@ public class Cliente {
         this.celular = celular;
     }
 
-    public String getDirecion() {
-        return direcion;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDirecion(String direcion) {
-        this.direcion = direcion;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getCorreoElectronico() {
